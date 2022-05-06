@@ -25,4 +25,14 @@ public class TwoSum {
         return new int[]{};
     }
 
+    public static void runTestCase() {
+        TwoSum t = new TwoSum();
+        int[] nums = {3,2,4};
+        int[] nums2 = {2,7,11,15};
+        int[] result = t.twoSum(nums,6);
+        for (int i : result) {
+            System.out.print(i + ",");
+        }
+    }
+
 }

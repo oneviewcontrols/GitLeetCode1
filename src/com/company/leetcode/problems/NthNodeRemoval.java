@@ -36,4 +36,16 @@ public class NthNodeRemoval {
         }
         return head;
     }
+
+    public static void runTestCase() {
+        NthNodeRemoval n = new NthNodeRemoval();
+        ListNode node = n.buildTestCase(6);
+        node = n.removeNthFromEnd(node,2);
+        System.out.print("[");
+        while (node != null) {
+            System.out.print(node.val + ",");
+            node = node.next;
+        }
+        System.out.println("]");
+    }
 }

@@ -41,4 +41,14 @@ public class ThreeSum {
         return returnList;
     }
 
+    public static void runTestCase() {
+        ThreeSum t = new ThreeSum();
+        int[] nums = {-1,0,1,2,-1,-4};
+        List<List<Integer>> result = t.threeSum(nums);
+        for (List<Integer> l : result) {
+            System.out.println(l);
+        }
+
+    }
+
 }
