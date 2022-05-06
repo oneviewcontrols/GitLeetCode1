@@ -19,5 +19,4 @@ public class MedianOfTwoSortedArrays {
             return mergedArray[mergedArray.length / 2];
         }
     }
-
 }
