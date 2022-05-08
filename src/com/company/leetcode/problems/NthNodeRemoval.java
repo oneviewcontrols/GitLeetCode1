@@ -39,8 +39,8 @@ public class NthNodeRemoval {
 
     public static void runTestCase() {
         NthNodeRemoval n = new NthNodeRemoval();
-        ListNode node = n.buildTestCase(6);
-        node = n.removeNthFromEnd(node,2);
+        ListNode node = n.buildTestCase(2);
+        node = n.removeNthFromEnd(node,1);
         System.out.print("[");
         while (node != null) {
             System.out.print(node.val + ",");
