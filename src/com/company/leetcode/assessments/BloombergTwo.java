@@ -30,14 +30,5 @@ public class BloombergTwo {
         copyRandoms(node.left,copy.left,map);
         copyRandoms(node.right,copy.right,map);
     }
-
-    public static void runTestCases() {
-
-    }
-    private Node buildTreeOne() {
-        Node root = new Node(1);
-        root.right = new Node(4);
-        root.right.left = new Node(7);
-    }
 }
 
