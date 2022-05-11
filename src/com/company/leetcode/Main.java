@@ -1,16 +1,11 @@
 package com.company.leetcode;
 
-import com.company.leetcode.problems.MergeTwoSortedLists;
-import com.company.leetcode.problems.NthNodeRemoval;
-import com.company.leetcode.problems.PhoneNumberConversion;
-import com.company.leetcode.problems.ValidParentheses;
-
-import java.util.concurrent.Callable;
+import com.company.leetcode.assessments.BloombergOne;
 
 public class Main {
 
     public static void main(String[] args) {
-        PhoneNumberConversion.runTest("23");
+        BloombergOne.runTestCases();
     }
 }
 

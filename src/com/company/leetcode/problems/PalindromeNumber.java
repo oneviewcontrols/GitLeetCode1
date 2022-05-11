@@ -1,7 +1,18 @@
 package com.company.leetcode.problems;
 
 public class PalindromeNumber {
+
     public boolean isPalindrome(int x) {
+        if (x < 0) return false;
+        String s = Integer.toString(x);
+        StringBuilder builder = new StringBuilder(s);
+        if (builder.reverse().toString().compareTo(s) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPalindromeOld(int x) {
         if (x < 0) return false;
         int original = x;
         int reverse = 0;
