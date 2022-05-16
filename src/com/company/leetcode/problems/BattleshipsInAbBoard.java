@@ -26,7 +26,7 @@ public class BattleshipsInAbBoard {
         clearBoard(board,i,j - 1);
         clearBoard(board,i,j + 1);
     }
-    
+
     public int countBattleshipsOld(char[][] board) {
         int count = 0;
         for (int i=0;i< board.length;i++) {
