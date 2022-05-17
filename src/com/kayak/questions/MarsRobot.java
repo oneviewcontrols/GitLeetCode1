@@ -1,5 +1,7 @@
 package com.kayak.questions;
 
+import org.junit.jupiter.api.Test;
+
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,10 +41,11 @@ public class MarsRobot implements Robot{
         /* Note for Reviewer - I know this is an unchecked exception,
            I could skip the parameter check and the existing code would just ignore any
            commands not found in the valid commands set, but informing the caller they have an error
-           makes more sense than eating it.
+           in their instructions makes more sense than eating it. One missed move completely changes
+           the outcome.
          */
         if (areMoveParametersValid(instructions,startingCoordinates) == false) {
-            throw new InvalidParameterException("Invalid arguments passed to MarsRobot::move");
+            throw new InvalidParameterException();
         }
         // Taking an empty command as a valid command, robot doesn't move
         if (instructions.length == 0) return startingCoordinates;
@@ -71,6 +74,20 @@ public class MarsRobot implements Robot{
     }
 
     /**
+     * Validate the parameters prior to attempting robot movement
+     * @param instructions
+     * @param startingCoordinates
+     * @return false if invalid, true if valid
+     */
+    private boolean areMoveParametersValid(String[] instructions,int[] startingCoordinates) {
+        if (startingCoordinates.length != 2) return false;
+        for (int i=0;i<instructions.length;i++) {
+                if (validCommands.contains(instructions[i]) == false) return false;
+        }
+        return true;
+    }
+
+    /**
      * Return the x,y coordinate that the robot currently resides at on a cartesian grid.
      *
      * @return
@@ -78,22 +95,6 @@ public class MarsRobot implements Robot{
     @Override
     public int[] getCurrentCoordinates() {
         return coordinates;
-    }
-
-
-
-    /**
-     * Validate the parameters prior to attempting robot movement
-     * @param instructions
-     * @param startingCoordinates
-     * @return false if invalid, true if valid
-     */
-    private boolean areMoveParametersValid(String[] instructions,int[] startingCoordinates) {
-        for (int i=0;i<instructions.length;i++) {
-            if (validCommands.contains(instructions[i]) == false) return false;
-        }
-        if (startingCoordinates.length != 2) return false;
-        return true;
     }
 
     /**
@@ -111,6 +112,7 @@ public class MarsRobot implements Robot{
     public void setName(String name) {
         this.name = name;
     }
+
 
     public static void runTestCases() {
         MarsRobot r = new MarsRobot();
