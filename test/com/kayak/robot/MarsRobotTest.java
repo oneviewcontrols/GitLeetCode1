@@ -1,14 +1,11 @@
-package com.kayak.questions;
+package com.kayak.robot;
 
 import org.junit.jupiter.api.*;
-import org.omg.CORBA.portable.ApplicationException;
-
 import java.security.InvalidParameterException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MarsRobotTest {
-    MarsRobot robot;
+    private MarsRobot robot;
 
     @BeforeEach
     void setUp() {
