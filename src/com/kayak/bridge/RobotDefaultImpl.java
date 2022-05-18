@@ -1,7 +1,5 @@
 package com.kayak.bridge;
 
-import java.security.InvalidParameterException;
-
 public class RobotDefaultImpl implements RobotImpl {
     private String name = "";
     private int[] coordinates = {0,0};
@@ -18,36 +16,31 @@ public class RobotDefaultImpl implements RobotImpl {
     }
 
     @Override
-    public int[] move(RobotMovementCommands commands) throws InvalidParameterException {
-        String[] orders = commands.getCommands();
+    public int[] move(RobotMovementCommands commands)  {
+        RobotMovements[] orders = commands.getCommands();
         int x = commands.getStartingCoordinates()[0];
         int y = commands.getStartingCoordinates()[0];
-        if (!commands.instructionsAreValid()) {
-            throw new InvalidParameterException();
-        }
         if (orders.length == 0) {
             return coordinates;
         }
         int xDir = 0;
         int yDir = 1;
-        for (String movement : orders) {
+        for (RobotMovements movement : orders) {
             try {
                 Thread.sleep(commands.getDelay());
             } catch (InterruptedException e) {
-                // Would normally log this, not going to raise it
-                // since it won't effect the final location
-                // even though it will effect the timing of arrival.
                 System.out.println("RobotDefaultImpl.move caught InterruptedException");
             }
-            if (commands.isMoveRight(movement)) {
+            if (movement == RobotMovements.RIGHT) {
                 int newX = xDir != 0 ? 0 : yDir;
                 yDir = yDir != 0 ? 0 : -xDir;
                 xDir = newX;
-            } else if (commands.isMoveLeft(movement)) {
+            }
+            if (movement == RobotMovements.LEFT) {
                 int newX = xDir != 0 ? 0 : -yDir;
                 yDir = yDir != 0 ? 0 : xDir;
                 xDir = newX;
-            } else if (commands.isMoveForward(movement)){
+            } else if  (movement == RobotMovements.FORWARD) {
                 x = x + xDir;
                 y = y + yDir;
             }

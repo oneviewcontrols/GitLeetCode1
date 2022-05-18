@@ -6,11 +6,10 @@ public interface RobotImpl {
 
     /**
      *
-     * @param instructions
+     * @param commands
      * @return
-     * @throws InvalidParameterException Thrown since an invalid command effects final location
      */
-    public int[] move(RobotMovementCommands instructions) throws InvalidParameterException;
+    public int[] move(RobotMovementCommands commands);
 
     /**
      *

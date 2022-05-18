@@ -10,7 +10,7 @@ public abstract class Robot {
         this.impl = implementation;
     }
 
-    public abstract int[] move(RobotMovementCommands instructions) throws InvalidParameterException;
+    public abstract int[] move(RobotMovementCommands instructions);
 
     public abstract int[] getCoordinates();
 
@@ -20,7 +20,7 @@ public abstract class Robot {
 
     public abstract int getRank();
 
-    public abstract void setRank();
+    public abstract void setRank(int rank);
 
     public abstract void reportStatus();
 
