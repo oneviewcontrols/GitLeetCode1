@@ -1,16 +1,19 @@
 package com.kayak.bridge;
 
-public class RobotDefaultImpl implements RobotImpl {
+import java.time.Duration;
+import java.time.Instant;
+
+public class MoveableRobotImpl implements RobotImpl {
     private String name = "";
     private int[] coordinates = {0,0};
     private int rank = 0;
 
-    public RobotDefaultImpl() {
+    public MoveableRobotImpl() {
         super();
         this.name = "";
     }
 
-    public RobotDefaultImpl(String name) {
+    public MoveableRobotImpl(String name) {
         super();
         this.name = name;
     }
@@ -18,6 +21,7 @@ public class RobotDefaultImpl implements RobotImpl {
     @Override
     public int[] move(RobotMovementCommands commands)  {
         RobotMovements[] orders = commands.getCommands();
+        int movementDistance = commands.getMovementDistance();
         int x = commands.getStartingCoordinates()[0];
         int y = commands.getStartingCoordinates()[0];
         if (orders.length == 0) {
@@ -26,6 +30,7 @@ public class RobotDefaultImpl implements RobotImpl {
         int xDir = 0;
         int yDir = 1;
         for (RobotMovements movement : orders) {
+            Instant start = Instant.now();
             try {
                 Thread.sleep(commands.getDelay());
             } catch (InterruptedException e) {
@@ -41,14 +46,38 @@ public class RobotDefaultImpl implements RobotImpl {
                 yDir = yDir != 0 ? 0 : xDir;
                 xDir = newX;
             } else if  (movement == RobotMovements.FORWARD) {
-                x = x + xDir;
-                y = y + yDir;
+                x = x + (xDir * movementDistance);
+                y = y + (yDir * movementDistance);
             }
+            Instant finish = Instant.now();
+            long timeElapsed = Duration.between(start, finish).toMillis();
+            reportLatestMovement(movement,movementDistance,timeElapsed);
         }
         coordinates[0] = x;
         coordinates[1] = y;
         return coordinates;
 
+    }
+
+    private void reportLatestMovement(RobotMovements movement,int distance,long timeInMillis) {
+        String report = "";
+        switch(movement) {
+            case LEFT : {
+                report = getName().length() > 0 ? getName() + " Turned Left" : "Turned Left";
+                break;
+            }
+            case RIGHT : {
+                report = getName().length() > 0 ? getName() + " Turned Right" : "Turned Right";
+                break;
+            }
+            case FORWARD : {
+                report = getName().length() > 0 ? getName() + " Moved Forward" : "Moved Forward ";
+                report += new StringBuffer(" " + Integer.toString(distance)).toString();
+                break;
+            }
+        }
+        long seconds = timeInMillis/1000;
+        System.out.println(report + ", " + seconds + " second(s) since last movement.");
     }
 
     @Override

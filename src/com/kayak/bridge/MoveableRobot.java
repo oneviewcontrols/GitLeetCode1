@@ -6,6 +6,11 @@ public class MoveableRobot extends Robot{
         super(robotImpl);
     }
 
+    public MoveableRobot(RobotImpl robotImpl,String name) {
+        super(robotImpl);
+        setName(name);
+    }
+
     @Override
     public int[] move(RobotMovementCommands commands) {
         return impl.move(commands);
