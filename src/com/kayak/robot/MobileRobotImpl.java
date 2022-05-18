@@ -1,4 +1,4 @@
-package com.kayak.bridge;
+package com.kayak.robot;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -21,6 +21,7 @@ public class MoveableRobotImpl implements RobotImpl {
     @Override
     public int[] move(RobotMovementCommands commands)  {
         RobotMovements[] orders = commands.getCommands();
+        if (orders.length == 0) return commands.getStartingCoordinates();
         int movementDistance = commands.getMovementDistance();
         int x = commands.getStartingCoordinates()[0];
         int y = commands.getStartingCoordinates()[0];
@@ -51,7 +52,7 @@ public class MoveableRobotImpl implements RobotImpl {
             }
             Instant finish = Instant.now();
             long timeElapsed = Duration.between(start, finish).toMillis();
-            reportLatestMovement(movement,movementDistance,timeElapsed);
+            if (movement != null) reportLatestMovement(movement,movementDistance,timeElapsed);
         }
         coordinates[0] = x;
         coordinates[1] = y;
@@ -107,7 +108,12 @@ public class MoveableRobotImpl implements RobotImpl {
 
     @Override
     public void reportStatus() {
-        System.out.println("Current Coordinates are [" + getCoordinates()[0] + "," + getCoordinates()[1] + "]");
-        System.out.println("Rank is " + getRank());
+        if (getName().length() > 0) {
+            System.out.print(getName() + " Rank is " + getRank());
+        } else {
+            System.out.print("Rank is " + getRank());
+        }
+        System.out.println(". Current Coordinates are [" + getCoordinates()[0] + "," + getCoordinates()[1] + "].");
+
     }
 }

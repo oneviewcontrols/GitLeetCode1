@@ -1,4 +1,4 @@
-package com.kayak.bridge;
+package com.kayak.robot;
 
 public class MoveableRobot extends Robot{
 

@@ -1,28 +1,25 @@
-package com.kayak.robot;
+package com.kayak.bridge;
 
-import java.security.InvalidParameterException;
+public abstract class Robot {
+    protected RobotImpl impl = null;
 
-/*
- * Robot interface, there can be N types of robots
-*/
-public interface Robot {
+    public Robot(RobotImpl implementation) {
+        super();
+        this.impl = implementation;
+    }
 
-    /**
-     * Move robot in cartesian grid. F = Forward, L = Left (90 degrees) R = Right (90 degrees)
-     * @param instructions String array consisting of commands, currently only "F","L","R"
-     * @param startingCoordinates x,y length must equal 2
-     * @return
-     * @throws InvalidParameterException Instructions other than F,R,L or start coordinates not = 2
-     */
-    public int[] move(String[] instructions,int[] startingCoordinates) throws InvalidParameterException;
+    public abstract int[] move(RobotMovementCommands instructions);
 
-    /**
-     * @return  x,y
-     */
-    public int[] getCurrentCoordinates();
+    public abstract int[] getCoordinates();
 
-    public String getName();
+    public abstract void setName(String name);
 
-    public void setName(String name);
+    public abstract String getName();
+
+    public abstract int getRank();
+
+    public abstract void setRank(int rank);
+
+    public abstract void reportStatus();
 
 }
