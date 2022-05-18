@@ -29,15 +29,15 @@ public class MarsRobot implements Robot{
         int xDir = 0;
         int yDir = 1;
         for (String movement : instructions) {
-            if (movement.compareTo("R") == 0) {
+            if (movement.equals("R")) {
                 int newX = xDir != 0 ? 0 : yDir;
                 yDir = yDir != 0 ? 0 : -xDir;
                 xDir = newX;
-            } else if (movement.compareTo("L") == 0) {
+            } else if (movement.equals("L")) {
                 int newX = xDir != 0 ? 0 : -yDir;
                 yDir = yDir != 0 ? 0 : xDir;
                 xDir = newX;
-            } else if (movement.compareTo("F") == 0){
+            } else if (movement.equals("F")){
                 x = x + xDir;
                 y = y + yDir;
             }
