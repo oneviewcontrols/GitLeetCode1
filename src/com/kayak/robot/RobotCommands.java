@@ -8,7 +8,7 @@ public class RobotCommands {
     private int delay = 0;
     private int movementDistance = 1;
     private int[] startingCoordinates = {0,0};
-    public static enum DIR {
+    public static enum Dir {
         LEFT,RIGHT,FORWARD;
     }
 
