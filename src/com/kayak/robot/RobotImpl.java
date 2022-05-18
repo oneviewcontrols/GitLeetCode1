@@ -1,6 +1,4 @@
-package com.kayak.bridge;
-
-import java.security.InvalidParameterException;
+package com.kayak.robot;
 
 public interface RobotImpl {
 
@@ -9,7 +7,7 @@ public interface RobotImpl {
      * @param commands
      * @return
      */
-    public int[] move(RobotMovementCommands commands);
+    public int[] move(RobotCommands commands);
 
     /**
      *

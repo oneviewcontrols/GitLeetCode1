@@ -3,24 +3,24 @@ package com.kayak.robot;
 import java.time.Duration;
 import java.time.Instant;
 
-public class MoveableRobotImpl implements RobotImpl {
+public class MobileRobotImpl implements RobotImpl {
     private String name = "";
     private int[] coordinates = {0,0};
     private int rank = 0;
 
-    public MoveableRobotImpl() {
+    public MobileRobotImpl() {
         super();
         this.name = "";
     }
 
-    public MoveableRobotImpl(String name) {
+    public MobileRobotImpl(String name) {
         super();
         this.name = name;
     }
 
     @Override
-    public int[] move(RobotMovementCommands commands)  {
-        RobotMovements[] orders = commands.getCommands();
+    public int[] move(RobotCommands commands)  {
+        RobotMovements[] orders = commands.getMovements();
         if (orders.length == 0) return commands.getStartingCoordinates();
         int movementDistance = commands.getMovementDistance();
         int x = commands.getStartingCoordinates()[0];

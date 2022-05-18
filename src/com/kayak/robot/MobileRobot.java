@@ -1,18 +1,18 @@
 package com.kayak.robot;
 
-public class MoveableRobot extends Robot{
+public class MobileRobot extends Robot{
 
-    public MoveableRobot(RobotImpl robotImpl) {
+    public MobileRobot(RobotImpl robotImpl) {
         super(robotImpl);
     }
 
-    public MoveableRobot(RobotImpl robotImpl,String name) {
+    public MobileRobot(RobotImpl robotImpl, String name) {
         super(robotImpl);
         setName(name);
     }
 
     @Override
-    public int[] move(RobotMovementCommands commands) {
+    public int[] move(RobotCommands commands) {
         return impl.move(commands);
     }
 

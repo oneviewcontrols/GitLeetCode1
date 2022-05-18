@@ -3,34 +3,37 @@ package com.kayak.robot;
 
 import java.security.InvalidParameterException;
 
-public class RobotMovementCommands {
-    private RobotMovements[] commands = {};
+public class RobotCommands {
+    private RobotMovements[] movements = {};
     private int delay = 0;
     private int movementDistance = 1;
     private int[] startingCoordinates = {0,0};
+    public static enum DIR {
+        LEFT,RIGHT,FORWARD;
+    }
 
-    public RobotMovementCommands(){
+    public RobotCommands(){
         super();
     }
 
-    public RobotMovementCommands(String commands) {
+    public RobotCommands(String movementCommands) {
         super();
-        setCommandsFromString(commands);
+        setCommandsFromString(movementCommands);
     }
 
     /**
      *
-     * @param commands String array, Forward F, L turn Left 90 degrees, R turn right 90 degrees
+     * @param movementCommands String array, Forward F, L turn Left 90 degrees, R turn right 90 degrees
      * @param delay time to pause between commands in milliseconds >= 0
      * @param movementDistance distance to move forward per command, >= 1
      * @param startingCoordinates x,y array length of 2
      */
-    public RobotMovementCommands(String commands,int delay,int movementDistance,int[] startingCoordinates) {
+    public RobotCommands(String movementCommands, int delay, int movementDistance, int[] startingCoordinates) {
         super();
-        if ((commands == null) || (delay < 0) || (movementDistance < 1) || (startingCoordinates == null) || (startingCoordinates.length != 2)) {
+        if ((movementCommands == null) || (delay < 0) || (movementDistance < 1) || (startingCoordinates == null) || (startingCoordinates.length != 2)) {
             throw new InvalidParameterException("commands cannot be null, delay must be 0 or greater, movementDistance must be >= 1, coordinates must be of length 2");
         }
-        setCommandsFromString(commands);
+        setCommandsFromString(movementCommands);
         this.delay = delay;
         this.movementDistance = movementDistance;
         this.startingCoordinates = startingCoordinates;
@@ -38,20 +41,20 @@ public class RobotMovementCommands {
 
     /**
      *
-     * @param commands Forward, LEFT turn Left 90 degrees, RIGHT turn right 90 degrees
+     * @param movements Forward, LEFT turn Left 90 degrees, RIGHT turn right 90 degrees
      * @param delay time to pause between commands in milliseconds >= 0
      * @param movementDistance distance to move forward per command, >= 1
      * @param startingCoordinates x,y array length of 2
      */
-    public RobotMovementCommands(RobotMovements[] commands,
-                                 int delay,
-                                 int movementDistance,
-                                 int[] startingCoordinates) {
+    public RobotCommands(RobotMovements[] movements,
+                         int delay,
+                         int movementDistance,
+                         int[] startingCoordinates) {
         super();
-        if ((commands == null) || (delay < 0) || (movementDistance < 1) || (startingCoordinates == null) || (startingCoordinates.length != 2)) {
+        if ((movements == null) || (delay < 0) || (movementDistance < 1) || (startingCoordinates == null) || (startingCoordinates.length != 2)) {
             throw new InvalidParameterException("commands cannot be null, delay must be 0 or greater, movementDistance must be >= 1, coordinates must be of length 2");
         }
-        this.commands = commands;
+        this.movements = movements;
         this.delay = delay;
         this.movementDistance = Math.abs(movementDistance);
         this.startingCoordinates = startingCoordinates;
@@ -59,14 +62,14 @@ public class RobotMovementCommands {
 
     /**
      *
-     * @param commands RIGHT, LEFt - turn 90 degrees, FORWARD - move
+     * @param movements RIGHT, LEFt - turn 90 degrees, FORWARD - move
      */
-    public void setCommands(RobotMovements[] commands) {
-        this.commands = commands;
+    public void setMovements(RobotMovements[] movements) {
+        this.movements = movements;
     }
 
-    public RobotMovements[] getCommands() {
-        return commands;
+    public RobotMovements[] getMovements() {
+        return movements;
     }
 
     /**
@@ -109,20 +112,20 @@ public class RobotMovementCommands {
         return movementDistance;
     }
 
-    public void setCommandsFromString(String commands) {
-        setCommands(buildCommandsFromString(commands));
+    public void setCommandsFromString(String movementCommands) {
+        setMovements(buildMovementsFromString(movementCommands));
     }
 
     /**
      * Given a string with Forward F, Right R, and Left L create a command array
      * of type RobotMovements
-     * @param commands
+     * @param movementCommands
      * @return
      */
-    private RobotMovements[] buildCommandsFromString(String commands) {
-        String[] str = commands.split("");
+    private RobotMovements[] buildMovementsFromString(String movementCommands) {
+        String[] str = movementCommands.split("");
         RobotMovements[] cmds = new RobotMovements[str.length];
-        if (commands.length() == 0) return cmds;
+        if (movementCommands.length() == 0) return cmds;
         for (int i=0;i<str.length;i++) {
             if (str[i].equals("R")) {
                 cmds[i] = RobotMovements.RIGHT;
