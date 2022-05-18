@@ -30,7 +30,8 @@ public class RobotCommands {
      */
     public RobotCommands(String movementCommands, int delay, int movementDistance, int[] startingCoordinates) {
         super();
-        if ((movementCommands == null) || (delay < 0) || (movementDistance < 1) || (startingCoordinates == null) || (startingCoordinates.length != 2)) {
+        if ((movementCommands == null) || (delay < 0) || (movementDistance < 1) ||
+                (startingCoordinates == null) || (startingCoordinates.length != 2)) {
             throw new InvalidParameterException("commands cannot be null, delay must be 0 or greater, movementDistance must be >= 1, coordinates must be of length 2");
         }
         setCommandsFromString(movementCommands);
@@ -51,7 +52,8 @@ public class RobotCommands {
                          int movementDistance,
                          int[] startingCoordinates) {
         super();
-        if ((movements == null) || (delay < 0) || (movementDistance < 1) || (startingCoordinates == null) || (startingCoordinates.length != 2)) {
+        if ((movements == null) || (delay < 0) || (movementDistance < 1) ||
+                (startingCoordinates == null) || (startingCoordinates.length != 2)) {
             throw new InvalidParameterException("commands cannot be null, delay must be 0 or greater, movementDistance must be >= 1, coordinates must be of length 2");
         }
         this.movements = movements;
