@@ -1,4 +1,4 @@
-package com.company.leetcode.assessments;
+package com.company.leetcode.assessments.roundone;
 
 import com.company.leetcode.util.Node;
 import com.company.leetcode.util.NodeCopy;

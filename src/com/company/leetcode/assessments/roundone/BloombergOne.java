@@ -1,4 +1,4 @@
-package com.company.leetcode.assessments;
+package com.company.leetcode.assessments.roundone;
 
 import java.util.HashMap;
 import java.util.Map;

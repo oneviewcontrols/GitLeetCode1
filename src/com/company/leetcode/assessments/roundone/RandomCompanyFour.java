@@ -1,4 +1,4 @@
-package com.company.leetcode.assessments;
+package com.company.leetcode.assessments.roundone;
 
 public class RandomCompanyFour {
     public boolean divisorGame(int n) {

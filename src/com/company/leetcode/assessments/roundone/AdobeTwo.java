@@ -1,9 +1,6 @@
-package com.company.leetcode.assessments;
+package com.company.leetcode.assessments.roundone;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class AdobeTwo {
 

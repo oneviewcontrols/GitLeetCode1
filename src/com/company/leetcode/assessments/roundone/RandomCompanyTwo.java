@@ -1,4 +1,4 @@
-package com.company.leetcode.assessments;
+package com.company.leetcode.assessments.roundone;
 
 public class RandomCompanyTwo {
     public int[] minOperations(String boxes) {

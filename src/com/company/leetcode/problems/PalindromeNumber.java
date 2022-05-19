@@ -4,6 +4,40 @@ public class PalindromeNumber {
 
     public boolean isPalindrome(int x) {
         if (x < 0) return false;
+        int original = x;
+        int reverse = 0;
+        while (x > 0) {
+            int num = x % 10;
+            x = x/10;
+            reverse = reverse * 10 + num;
+        }
+        if (reverse == original) return true;
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public boolean isPalindromeOld2(int x) {
+        if (x < 0) return false;
         String s = Integer.toString(x);
         StringBuilder builder = new StringBuilder(s);
         if (builder.reverse().toString().compareTo(s) == 0) {
