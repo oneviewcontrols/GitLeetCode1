@@ -3,17 +3,17 @@ package com.kayak.robot;
 import java.time.Duration;
 import java.time.Instant;
 
-public class MobileRobotImpl implements RobotImpl {
+public class RacingRobotImpl implements RobotImpl {
     private String name = "";
     private int[] coordinates = {0,0};
     private int rank = 0;
 
-    public MobileRobotImpl() {
+    public RacingRobotImpl() {
         super();
         this.name = "";
     }
 
-    public MobileRobotImpl(String name) {
+    public RacingRobotImpl(String name) {
         super();
         this.name = name;
     }

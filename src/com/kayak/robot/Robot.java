@@ -1,6 +1,6 @@
 package com.kayak.robot;
 
-public class Robot extends RobotRename {
+public class Robot extends AbstractRobot {
 
     public Robot(RobotImpl robotImpl) {
         super(robotImpl);

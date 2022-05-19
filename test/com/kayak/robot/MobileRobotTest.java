@@ -16,7 +16,7 @@ class MobileRobotTest {
 
     @BeforeEach
     void setUp() {
-        robot = new Robot(new MobileRobotImpl(),name);
+        robot = new Robot(new RacingRobotImpl(),name);
     }
 
     @AfterEach

@@ -1,9 +1,9 @@
 package com.kayak.robot;
 
-public abstract class RobotRename {
+public abstract class AbstractRobot {
     protected RobotImpl impl = null;
 
-    public RobotRename(RobotImpl implementation) {
+    public AbstractRobot(RobotImpl implementation) {
         super();
         this.impl = implementation;
     }
