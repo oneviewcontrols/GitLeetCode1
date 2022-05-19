@@ -1,4 +1,4 @@
-package com.kayak.robot;
+package com.kayak.robotoldtwo;
 
 public abstract class Robot {
     protected RobotImpl impl = null;
@@ -8,7 +8,7 @@ public abstract class Robot {
         this.impl = implementation;
     }
 
-    public abstract int[] move(String[] instructions,int[] startingCoordinates,int delay,int movementDistance);
+    public abstract int[] move(RobotCommands instructions);
 
     public abstract int[] getCoordinates();
 

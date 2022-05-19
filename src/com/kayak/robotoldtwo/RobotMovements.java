@@ -1,4 +1,4 @@
-package com.kayak.robot;
+package com.kayak.robotoldtwo;
 
 
 public enum RobotMovements {

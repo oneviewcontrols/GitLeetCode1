@@ -3,7 +3,7 @@ package com.kayak.robotold;
 import java.security.InvalidParameterException;
 
 /*
- * Robot interface, there can be N types of robots
+ * Robot interface, there can be N types of robot
 */
 public interface Robot {
 

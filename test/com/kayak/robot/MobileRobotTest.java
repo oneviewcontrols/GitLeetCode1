@@ -24,97 +24,67 @@ class MobileRobotTest {
         robot = null;
     }
 
-    @Test
-    void testMoveNoCommands() {
-        RobotCommands cmds = new RobotCommands("");
-        cmds.setStartingCoordinates(new int[]{1,1});
-        int[] result = robot.move(cmds);
-        assertTrue(result[0] == 1);
-        assertTrue(result[1] == 1);
-    }
 
     @Test
     void testMoveOneLeft() {
-        RobotCommands cmds = new RobotCommands("LF");
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = {"L","F"};
+        int[] result = robot.move(cmds,new int[]{0,0},0,1);
         assertTrue(result[0] == -1);
         assertTrue(result[1] == 0);
     }
     @Test
     void testMoveOneRight() {
-        RobotCommands cmds = new RobotCommands("RF");
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = {"R","F"};
+        int[] result = robot.move(cmds,new int[]{0,0},0,1);
         assertTrue(result[0] == 1);
         assertTrue(result[1] == 0);
     }
 
     @Test
     void testMoveOneUp() {
-        RobotCommands cmds = new RobotCommands("F");
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = {"F"};
+        int[] result = robot.move(cmds,new int[]{0,0},0,1);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == 1);
     }
 
     @Test
     void testMoveOneDown() {
-        RobotCommands cmds = new RobotCommands("LLF");
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = {"L","L","F"};
+        int[] result = robot.move(cmds,new int[]{0,0},0,1);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == -1);
     }
 
     @Test
     void testMoveMultipleSpots() {
-        RobotCommands cmds = new RobotCommands("F");
-        cmds.setMovementDistance(2);
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = {"F"};
+        int[] result = robot.move(cmds,new int[]{0,0},0,2);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == 2);
     }
 
     @Test
     void testMoveMultipleCommands() {
-        RobotCommands cmds = new RobotCommands("LFFFRFFFRRFFF");
-        cmds.setMovementDistance(1);
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = new String("LFFFRFFFRRFFF").split("");
+        int[] result = robot.move(cmds,new int[]{0,0},0,1);
         assertTrue(result[0] == -3);
         assertTrue(result[1] == 0);
     }
 
     @Test
     void testMoveMultipleCommandsAndSpots() {
-        RobotCommands cmds = new RobotCommands("LFFFRFFFRRFFF");
-        cmds.setMovementDistance(3);
-        cmds.setStartingCoordinates(new int[]{0,0});
-        int[] result = robot.move(cmds);
+        String[] cmds = new String("LFFFRFFFRRFFF").split("");
+        int[] result = robot.move(cmds,new int[]{0,0},0,3);
         assertTrue(result[0] == -9);
         assertTrue(result[1] == 0);
     }
 
     @Test
-    void testMoveOffZeroStartingSpot() {
-        RobotCommands cmds = new RobotCommands("");
-        cmds.setMovementDistance(1);
-        cmds.setStartingCoordinates(new int[]{2,2});
-        int[] result = robot.move(cmds);
-        assertTrue(result[0] == 2);
-        assertTrue(result[1] == 2);
-    }
-
-    @Test
     void testMoveDelay() {
-        RobotCommands cmds = new RobotCommands("F");
-        cmds.setDelay(1500);
-        cmds.setStartingCoordinates(new int[]{0,0});
+        String[] cmds = {"F"};
         Instant start = Instant.now();
-        int[] result = robot.move(cmds);
+        int[] result = robot.move(cmds,new int[]{0,0},2000,1);
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis()/1000;
         assertTrue(timeElapsed >=+ 1);
@@ -122,11 +92,8 @@ class MobileRobotTest {
 
     @Test
     void testGetCoordinates() {
-        RobotCommands cmds = new RobotCommands("LFFFRFFFRRFFF");
-        cmds.setMovementDistance(3);
-        cmds.setStartingCoordinates(new int[]{0,0});
-        robot.move(cmds);
-        int[] result = robot.getCoordinates();
+        String[] cmds = new String("LFFFRFFFRRFFF").split("");
+        int[] result = robot.move(cmds,new int[]{0,0},0,3);
         assertTrue(result[0] == -9);
         assertTrue(result[1] == 0);
     }

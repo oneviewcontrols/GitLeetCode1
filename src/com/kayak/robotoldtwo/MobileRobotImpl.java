@@ -1,4 +1,4 @@
-package com.kayak.robot;
+package com.kayak.robotoldtwo;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -19,34 +19,40 @@ public class MobileRobotImpl implements RobotImpl {
     }
 
     @Override
-    public int[] move(String[] commands,int[] startingCoordinates,int delay,int movementDistance) {
-        int x = startingCoordinates[0];
-        int y = startingCoordinates[1];
+    public int[] move(RobotCommands commands)  {
+        RobotMovements[] orders = commands.getMovements();
+        if (orders.length == 0) return commands.getStartingCoordinates();
+        int movementDistance = commands.getMovementDistance();
+        int x = commands.getStartingCoordinates()[0];
+        int y = commands.getStartingCoordinates()[0];
+        if (orders.length == 0) {
+            return coordinates;
+        }
         int xDir = 0;
         int yDir = 1;
-        for (String movement: commands) {
+        for (RobotMovements movement : orders) {
             Instant start = Instant.now();
             try {
-                Thread.sleep(delay);
+                Thread.sleep(commands.getDelay());
             } catch (InterruptedException e) {
                 System.out.println("RobotDefaultImpl.move caught InterruptedException");
             }
-            if (movement.equals("R")) {
+            if (movement == RobotMovements.RIGHT) {
                 int newX = xDir != 0 ? 0 : yDir;
                 yDir = yDir != 0 ? 0 : -xDir;
                 xDir = newX;
             }
-            if (movement.equals("L")) {
+            if (movement == RobotMovements.LEFT) {
                 int newX = xDir != 0 ? 0 : -yDir;
                 yDir = yDir != 0 ? 0 : xDir;
                 xDir = newX;
-            } else if  (movement.equals("F")) {
+            } else if  (movement == RobotMovements.FORWARD) {
                 x = x + (xDir * movementDistance);
                 y = y + (yDir * movementDistance);
             }
             Instant finish = Instant.now();
             long timeElapsed = Duration.between(start, finish).toMillis();
-            reportLatestMovement(movement,movementDistance,timeElapsed);
+            if (movement != null) reportLatestMovement(movement,movementDistance,timeElapsed);
         }
         coordinates[0] = x;
         coordinates[1] = y;
@@ -54,18 +60,18 @@ public class MobileRobotImpl implements RobotImpl {
 
     }
 
-    private void reportLatestMovement(String movement, int distance, long timeInMillis) {
+    private void reportLatestMovement(RobotMovements movement,int distance,long timeInMillis) {
         String report = "";
         switch(movement) {
-            case "L" : {
+            case LEFT : {
                 report = getName().length() > 0 ? getName() + " Turned Left" : "Turned Left";
                 break;
             }
-            case "R" : {
+            case RIGHT : {
                 report = getName().length() > 0 ? getName() + " Turned Right" : "Turned Right";
                 break;
             }
-            case "F" : {
+            case FORWARD : {
                 report = getName().length() > 0 ? getName() + " Moved Forward" : "Moved Forward ";
                 report += new StringBuffer(" " + Integer.toString(distance)).toString();
                 break;

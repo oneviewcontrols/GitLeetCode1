@@ -1,6 +1,6 @@
-package com.kayak.robot;
+package com.kayak.robotoldtwo;
 
-public class MobileRobot extends Robot {
+public class MobileRobot extends Robot{
 
     public MobileRobot(RobotImpl robotImpl) {
         super(robotImpl);
@@ -12,8 +12,8 @@ public class MobileRobot extends Robot {
     }
 
     @Override
-    public int[] move(String[] commands,int[] startingCoordinates,int delay,int movementDistance) {
-        return impl.move(commands,startingCoordinates,delay,movementDistance);
+    public int[] move(RobotCommands commands) {
+        return impl.move(commands);
     }
 
     @Override
