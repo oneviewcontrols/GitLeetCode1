@@ -84,7 +84,7 @@ class MobileRobotTest {
     void testMoveDelay() {
         String[] cmds = {"F"};
         Instant start = Instant.now();
-        int[] result = robot.move(cmds,new int[]{0,0},2000,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1000,1);
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis()/1000;
         assertTrue(timeElapsed >=+ 1);

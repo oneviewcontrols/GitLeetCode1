@@ -54,6 +54,13 @@ public class MobileRobotImpl implements RobotImpl {
 
     }
 
+    /**
+     * Report the latest movement of the robot which includes new coordinates, distance traveled,
+     * and time since last movement
+     * @param movement
+     * @param distance
+     * @param timeInMillis
+     */
     private void reportLatestMovement(String movement, int distance, long timeInMillis) {
         String report = "";
         switch(movement) {
