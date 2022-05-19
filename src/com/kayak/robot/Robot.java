@@ -1,25 +1,48 @@
 package com.kayak.robot;
 
-public abstract class Robot {
-    protected RobotImpl impl = null;
+public class Robot extends RobotRename {
 
-    public Robot(RobotImpl implementation) {
-        super();
-        this.impl = implementation;
+    public Robot(RobotImpl robotImpl) {
+        super(robotImpl);
     }
 
-    public abstract int[] move(String[] instructions,int[] startingCoordinates,int delay,int movementDistance);
+    public Robot(RobotImpl robotImpl, String name) {
+        super(robotImpl);
+        setName(name);
+    }
 
-    public abstract int[] getCoordinates();
+    @Override
+    public int[] move(String[] commands,int[] startingCoordinates,int delay,int movementDistance) {
+        return impl.move(commands,startingCoordinates,delay,movementDistance);
+    }
 
-    public abstract void setName(String name);
+    @Override
+    public int[] getCoordinates() {
+        return impl.getCoordinates();
+    }
 
-    public abstract String getName();
+    @Override
+    public void setName(String name) {
+        impl.setName(name);
+    }
 
-    public abstract int getRank();
+    @Override
+    public String getName() {
+        return impl.getName();
+    }
 
-    public abstract void setRank(int rank);
+    @Override
+    public int getRank() {
+        return impl.getRank();
+    }
 
-    public abstract void reportStatus();
+    @Override
+    public void setRank(int rank) {
+        impl.setRank(rank);
+    }
 
+    @Override
+    public void reportStatus() {
+        impl.reportStatus();
+    }
 }

@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MobileRobotTest {
 
-    private MobileRobot robot = null;
+    private Robot robot = null;
     private String name = "Test";
 
     @BeforeEach
     void setUp() {
-        robot = new MobileRobot(new MobileRobotImpl(),name);
+        robot = new Robot(new MobileRobotImpl(),name);
     }
 
     @AfterEach
