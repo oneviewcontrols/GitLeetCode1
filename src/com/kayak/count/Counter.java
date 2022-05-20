@@ -27,6 +27,16 @@ public class Counter {
         c.countUpAndDown(5,10);
         System.out.println();
         System.out.println();
+
+        c.countUp(0,5);
+        System.out.println();
+        System.out.println();
+        c.countUp(0,1);
+        System.out.println();
+        System.out.println();
+        c.countUp(5,10);
+        System.out.println();
+        System.out.println();
     }
 
 

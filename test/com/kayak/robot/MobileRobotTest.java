@@ -4,15 +4,25 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.Duration;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * NOTE - for expediency in this project I assumed nothing but valid inputs
+ * Normally there would be numerous unit tests to check invalid input cases.
+ * ALso, there would be unit tests for the RobotRacingService and other classes.
+ */
+
 class MobileRobotTest {
 
     private Robot robot = null;
     private String name = "Test";
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
     @BeforeEach
     void setUp() {
@@ -22,6 +32,7 @@ class MobileRobotTest {
     @AfterEach
     void tearDown() {
         robot = null;
+        System.setOut(originalOut);
     }
 
     @Test
@@ -99,12 +110,22 @@ class MobileRobotTest {
     }
 
     @Test
-    void testGetCoordinates() {
+    void testGetCoordinatesAfterMove() {
         String[] cmds = new String("LFFFRFFFRRFFF").split("");
         int[] result = robot.move(cmds,new int[]{0,0},3);
         assertTrue(result[0] == -9);
         assertTrue(result[1] == 0);
     }
+
+    @Test
+    void testGetCoordinatesMove() {
+        String[] cmds = new String("LFFFRFFFRRFFF").split("");
+        robot.move(cmds,new int[]{0,0},3);
+        int[] result = robot.getCoordinates();
+        assertTrue(result[0] == -9);
+        assertTrue(result[1] == 0);
+    }
+
 
     @Test
     void testSetName() {
@@ -118,13 +139,19 @@ class MobileRobotTest {
     }
 
     @Test
-    void testGetRank() {
-
+    void testSetAttribute() {
+        robot.setAttributeValue(RobotAttributes.RANK,"1");
+        robot.reportStatus();
+        assertTrue(robot.getAttributeValue(RobotAttributes.RANK).equals("1"));
     }
 
     @Test
-    void testSetRank() {
-
+    void testReportStatus() {
+        String[] cmds = new String("LFFFRFFFRRFFF").split("");
+        robot.move(cmds,new int[]{0,0},3);
+        System.setOut(new PrintStream(out));
+        robot.reportStatus();
+        assertEquals("Test. Current Coordinates are [-9,0].", out.toString().trim());
     }
 
 }
