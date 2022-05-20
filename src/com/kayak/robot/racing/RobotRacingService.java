@@ -19,21 +19,30 @@ public class RobotRacingService implements RobotObserver, RacerThreadListener {
         return instance;
     }
 
+    /**
+     * Convenience method to execute the project.
+     * A real race service would have a much better method building
+     * and executing a race with n robots.
+     */
     public void raceRobots() {
         try {
             rank = 1;
             numRacersOnCourse = 3;
             List<Robot> robots = new ArrayList<>();
-            Robot joe = new Robot(new RacingRobotImpl(), "Joe");
-            Robot bill = new Robot(new RacingRobotImpl(), "Bill");
-            Robot jim = new Robot(new RacingRobotImpl(), "Jim");
+            Robot joe = new Robot(new RacingRobotImpl("Joe",3000));
+            Robot bill = new Robot(new RacingRobotImpl("Bill",1000));
+            Robot jim = new Robot(new RacingRobotImpl("Jim",2000));
+
             joe.addObserver(RobotEvents.STOP, this);
             bill.addObserver(RobotEvents.STOP, this);
             jim.addObserver(RobotEvents.STOP, this);
+
             CountDownLatch latch = new CountDownLatch(3);
-            RacerThread joesThread = new RacerThread(joe, latch, 3000, "FRFLLFRF",this);
-            RacerThread billsThread = new RacerThread(bill, latch, 1000, "FFFFFLF",this);
-            RacerThread jimsThread = new RacerThread(jim, latch, 2000, "LFRF",this);
+
+            RacerThread joesThread = new RacerThread(joe, latch,  "FRFLLFRF",this);
+            RacerThread billsThread = new RacerThread(bill, latch, "FFFFFLF",this);
+            RacerThread jimsThread = new RacerThread(jim, latch,  "LFRF",this);
+
             joesThread.start();
             billsThread.start();
             jimsThread.start();

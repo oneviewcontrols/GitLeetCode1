@@ -11,17 +11,17 @@ public abstract class RobotImpl {
     protected Robot reference = null;
     protected String name = "";
     protected int[] coordinates = {0,0};
+    protected int movementDelay = 0; // in milliseconds
 
 
     /**
      * Move the robot based upon the commands passed in, valid commands are "F","R", or "L".
      * @param commands String Array of F,R,L for Forward, Right 90 degrees, Left 90 Degrees
      * @param startingCoordinates x,y int array of length 2
-     * @param delay delay between the exection of each command in milliseconds
      * @param movementDistance the distance to move for each forward command
      * @return
      */
-    public abstract int[] move(String[] commands,int[] startingCoordinates,int delay,int movementDistance);
+    public abstract int[] move(String[] commands,int[] startingCoordinates,int movementDistance);
 
 
     public abstract void reportStatus();
@@ -82,5 +82,8 @@ public abstract class RobotImpl {
         return this.name;
     }
 
+    public int getMovementDelay() {
+        return movementDelay;
+    }
 
 }

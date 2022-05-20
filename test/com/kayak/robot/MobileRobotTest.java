@@ -27,7 +27,7 @@ class MobileRobotTest {
     @Test
     void testMoveRaceMove() {
         String[] cmds = {"F","R","F","L","L","F","R","F"};
-        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == 2);
     }
@@ -35,14 +35,14 @@ class MobileRobotTest {
     @Test
     void testMoveOneLeft() {
         String[] cmds = {"L","F"};
-        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         assertTrue(result[0] == -1);
         assertTrue(result[1] == 0);
     }
     @Test
     void testMoveOneRight() {
         String[] cmds = {"R","F"};
-        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         assertTrue(result[0] == 1);
         assertTrue(result[1] == 0);
     }
@@ -50,7 +50,7 @@ class MobileRobotTest {
     @Test
     void testMoveOneUp() {
         String[] cmds = {"F"};
-        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == 1);
     }
@@ -58,7 +58,7 @@ class MobileRobotTest {
     @Test
     void testMoveOneDown() {
         String[] cmds = {"L","L","F"};
-        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == -1);
     }
@@ -66,7 +66,7 @@ class MobileRobotTest {
     @Test
     void testMoveMultipleSpots() {
         String[] cmds = {"F"};
-        int[] result = robot.move(cmds,new int[]{0,0},0,2);
+        int[] result = robot.move(cmds,new int[]{0,0},2);
         assertTrue(result[0] == 0);
         assertTrue(result[1] == 2);
     }
@@ -74,7 +74,7 @@ class MobileRobotTest {
     @Test
     void testMoveMultipleCommands() {
         String[] cmds = new String("LFFFRFFFRRFFF").split("");
-        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         assertTrue(result[0] == -3);
         assertTrue(result[1] == 0);
     }
@@ -82,7 +82,7 @@ class MobileRobotTest {
     @Test
     void testMoveMultipleCommandsAndSpots() {
         String[] cmds = new String("LFFFRFFFRRFFF").split("");
-        int[] result = robot.move(cmds,new int[]{0,0},0,3);
+        int[] result = robot.move(cmds,new int[]{0,0},3);
         assertTrue(result[0] == -9);
         assertTrue(result[1] == 0);
     }
@@ -90,8 +90,9 @@ class MobileRobotTest {
     @Test
     void testMoveDelay() {
         String[] cmds = {"F"};
+        robot = new Robot(new RacingRobotImpl(name,1000));
         Instant start = Instant.now();
-        int[] result = robot.move(cmds,new int[]{0,0},1000,1);
+        int[] result = robot.move(cmds,new int[]{0,0},1);
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis()/1000;
         assertTrue(timeElapsed >=+ 1);
@@ -100,7 +101,7 @@ class MobileRobotTest {
     @Test
     void testGetCoordinates() {
         String[] cmds = new String("LFFFRFFFRRFFF").split("");
-        int[] result = robot.move(cmds,new int[]{0,0},0,3);
+        int[] result = robot.move(cmds,new int[]{0,0},3);
         assertTrue(result[0] == -9);
         assertTrue(result[1] == 0);
     }

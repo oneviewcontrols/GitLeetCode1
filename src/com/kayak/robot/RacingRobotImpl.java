@@ -12,13 +12,14 @@ public class RacingRobotImpl extends RobotImpl {
         setName("");
     }
 
-    public RacingRobotImpl(String name) {
+    public RacingRobotImpl(String name,int movementDelay) {
         super();
-        setName(name);
+        this.name = name;
+        this.movementDelay = movementDelay;
     }
 
     @Override
-    public int[] move(String[] commands,int[] startingCoordinates,int delay,int movementDistance) {
+    public int[] move(String[] commands,int[] startingCoordinates,int movementDistance) {
         int x = startingCoordinates[0];
         int y = startingCoordinates[1];
         int xDir = 0;
@@ -27,7 +28,7 @@ public class RacingRobotImpl extends RobotImpl {
         for (String movement: commands) {
             Instant start = Instant.now();
             try {
-                Thread.sleep(delay);
+                Thread.sleep(movementDelay);
             } catch (InterruptedException e) {
                 System.out.println("RobotDefaultImpl.move caught InterruptedException");
             }

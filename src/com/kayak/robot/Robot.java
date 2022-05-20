@@ -22,8 +22,8 @@ public class Robot  {
         setName(name);
     }
 
-    public int[] move(String[] commands,int[] startingCoordinates,int delay,int movementDistance) {
-        return impl.move(commands,startingCoordinates,delay,movementDistance);
+    public int[] move(String[] commands,int[] startingCoordinates,int movementDistance) {
+        return impl.move(commands,startingCoordinates,movementDistance);
     }
 
     public int[] getCoordinates() {
