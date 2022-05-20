@@ -32,6 +32,9 @@ public class RobotRacingService implements RobotObserver, RacerThreadListener {
             Robot bill = new Robot(new RacingRobotImpl("Bill",1000));
             Robot jim = new Robot(new RacingRobotImpl("Jim",2000));
 
+            joe.addObserver(RobotEvents.START, this);
+            bill.addObserver(RobotEvents.START, this);
+            jim.addObserver(RobotEvents.START, this);
             joe.addObserver(RobotEvents.STOP, this);
             bill.addObserver(RobotEvents.STOP, this);
             jim.addObserver(RobotEvents.STOP, this);
@@ -55,7 +58,10 @@ public class RobotRacingService implements RobotObserver, RacerThreadListener {
 
     @Override
     public void onEvent(RobotEvents event, Robot robot) {
-        if (event == RobotEvents.STOP) {
+        if (event == RobotEvents.START) {
+            System.out.println(robot.getName() + " is off!");
+            rank++;
+        } else if (event == RobotEvents.STOP) {
             robot.setAttributeValue(RobotAttributes.RANK,Integer.toString(rank));
             rank++;
         }

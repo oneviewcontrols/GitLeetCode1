@@ -9,7 +9,6 @@ public class RacingRobotImpl extends RobotImpl {
         super();
         this.name = "";
         this.movementDelay = 0;
-
     }
 
     public RacingRobotImpl(String name,int movementDelay) {
@@ -18,6 +17,9 @@ public class RacingRobotImpl extends RobotImpl {
         this.movementDelay = movementDelay;
     }
 
+    /**
+     * NOTE - For the purpose of this exercise all inputs assumed to be valid
+     */
     @Override
     public int[] move(String[] commands,int[] startingCoordinates,int movementDistance) {
         int x = startingCoordinates[0];

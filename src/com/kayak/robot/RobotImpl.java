@@ -24,6 +24,9 @@ public abstract class RobotImpl {
     public abstract int[] move(String[] commands,int[] startingCoordinates,int movementDistance);
 
 
+    /**
+     * Print to stdout current name and location, rank if set.
+     */
     public abstract void reportStatus();
 
 

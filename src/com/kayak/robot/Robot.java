@@ -45,6 +45,10 @@ public class Robot  {
         return impl.getAttributeValue(attribute);
     }
 
+    public void clearAttributeValue(RobotAttributes attribute) {
+        impl.removeAttribute(attribute);
+    }
+
     public void addObserver(RobotEvents event, RobotObserver observer) {
         impl.addObserver(event,observer);
     }

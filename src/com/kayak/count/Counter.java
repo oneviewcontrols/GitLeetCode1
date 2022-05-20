@@ -16,28 +16,4 @@ public class Counter {
         System.out.println(start);
     }
 
-    public static void runTestCases() {
-        Counter c = new Counter();
-        c.countUpAndDown(0,5);
-        System.out.println();
-        System.out.println();
-        c.countUpAndDown(0,1);
-        System.out.println();
-        System.out.println();
-        c.countUpAndDown(5,10);
-        System.out.println();
-        System.out.println();
-
-        c.countUp(0,5);
-        System.out.println();
-        System.out.println();
-        c.countUp(0,1);
-        System.out.println();
-        System.out.println();
-        c.countUp(5,10);
-        System.out.println();
-        System.out.println();
-    }
-
-
 }
