@@ -3,7 +3,7 @@ package com.kayak.robot;
 import java.time.Duration;
 import java.time.Instant;
 
-public class RacingRobotImpl implements RobotImpl {
+public class RacingRobotImpl extends RobotImpl {
     private String name = "";
     private int[] coordinates = {0,0};
     private int rank = 0;
@@ -24,6 +24,7 @@ public class RacingRobotImpl implements RobotImpl {
         int y = startingCoordinates[1];
         int xDir = 0;
         int yDir = 1;
+        notifyObservers(RobotEvent.START);
         for (String movement: commands) {
             Instant start = Instant.now();
             try {
@@ -48,6 +49,7 @@ public class RacingRobotImpl implements RobotImpl {
             long timeElapsed = Duration.between(start, finish).toMillis();
             reportLatestMovement(movement,movementDistance,timeElapsed);
         }
+        notifyObservers(RobotEvent.STOP);
         coordinates[0] = x;
         coordinates[1] = y;
         return coordinates;

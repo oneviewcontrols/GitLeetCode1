@@ -1,9 +1,11 @@
-package com.kayak.robot;
+package com.kayak.robotoldtwo;
+
+import com.kayak.robot.RobotImplOLD;
 
 public abstract class AbstractRobot {
-    protected RobotImpl impl = null;
+    protected RobotImplOLD impl = null;
 
-    public AbstractRobot(RobotImpl implementation) {
+    public AbstractRobot(RobotImplOLD implementation) {
         super();
         this.impl = implementation;
     }
@@ -15,10 +17,6 @@ public abstract class AbstractRobot {
     public abstract void setName(String name);
 
     public abstract String getName();
-
-    public abstract int getRank();
-
-    public abstract void setRank(int rank);
 
     public abstract void reportStatus();
 

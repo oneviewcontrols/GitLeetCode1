@@ -5,7 +5,7 @@ package com.kayak.robot;
  * Robots can be created at run time with different abilities and attributes
  * based upon the impl they are initialized with
  */
-public class BatteryPoweredRobotImpl implements RobotImpl {
+public class BatteryPoweredRobotImpl implements RobotImplOLD {
     /**
      * Move the robot based upon the commands passed in, valid commands are "F","R", or "L".
      *
