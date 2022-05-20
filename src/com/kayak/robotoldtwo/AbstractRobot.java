@@ -1,7 +1,5 @@
 package com.kayak.robotoldtwo;
 
-import com.kayak.robot.RobotImplOLD;
-
 public abstract class AbstractRobot {
     protected RobotImplOLD impl = null;
 

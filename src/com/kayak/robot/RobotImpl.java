@@ -1,19 +1,23 @@
 package com.kayak.robot;
 
+import com.kayak.robotoldtwo.RobotImplOLD;
+
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class RobotImpl implements RobotImplOLD {
+public abstract class RobotImpl {
     protected Map<RobotEvent, Set<RobotObserver>> observerMap = new HashMap<>();
+    protected Map<RobotAttributes,String> attributeMap = new HashMap<>();
     protected Robot reference = null;
+    protected String name = "";
+    protected int[] coordinates = {0,0};
 
-    @Override
     public void setRobot(Robot robot) {
         this.reference = robot;
     }
 
-    @Override
     public Robot getRobot() {
         return this.reference;
     }
@@ -32,36 +36,56 @@ public abstract class RobotImpl implements RobotImplOLD {
      *
      * @return current location of the robot
      */
-    public abstract int[] getCoordinates();
+    public int[] getCoordinates() {
+        return this.coordinates;
+    }
 
-    public abstract void setName(String name);
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public abstract String getName();
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Report the current status as defined by the implementing classes
      */
     public abstract void reportStatus();
 
-    @Override
+
     public void addObserver(RobotEvent event, RobotObserver observer) {
         Set<RobotObserver> observers = observerMap.get(event);
+        if (observers == null) {
+            observers = new HashSet<>();
+        }
         observers.add(observer);
         observerMap.put(event,observers);
     }
 
-    @Override
+
     public void removeObserver(RobotEvent event, RobotObserver observer) {
         Set<RobotObserver> observers = observerMap.get(event);
         observers.remove(observer);
         observerMap.put(event,observers);
     }
 
-    @Override
     public void notifyObservers(RobotEvent event) {
         Set<RobotObserver> observers = observerMap.get(event);
+        if (observers == null) return;
         for (RobotObserver observer : observers) {
             observer.onEvent(event,this.reference);
         }
+    }
+
+    public void setAttribute(RobotAttributes attribute,String value) {
+        attributeMap.put(attribute,value);
+    }
+    public void removeAttribute(RobotAttributes attribute) {
+        attributeMap.remove(attribute);
+    }
+    public String getAttributeValue(RobotAttributes attribute) {
+        String value = getAttributeValue(attribute) != null ? getAttributeValue(attribute) : "";
+        return value;
     }
 }

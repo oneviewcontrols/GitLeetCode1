@@ -1,15 +1,18 @@
 package com.kayak.robot;
 
-public class Robot  {
-    protected RobotImplOLD impl = null;
 
-    public Robot(RobotImplOLD robotImpl) {
+import com.kayak.robotoldtwo.RobotImplOLD;
+
+public class Robot  {
+    protected RobotImpl impl = null;
+
+    public Robot(RobotImpl robotImpl) {
         super();
         this.impl = robotImpl;
         this.impl.setRobot(this);
     }
 
-    public Robot(RobotImplOLD robotImpl, String name) {
+    public Robot(RobotImpl robotImpl, String name) {
         super();
         this.impl = robotImpl;
         robotImpl.setRobot(this);

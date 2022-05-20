@@ -1,11 +1,13 @@
 package com.kayak.robot;
 
+
+
 /**
  * Class stub to show ability of the bridge pattern to allow n different robots
  * Robots can be created at run time with different abilities and attributes
  * based upon the impl they are initialized with
  */
-public class BatteryPoweredRobotImpl implements RobotImplOLD {
+public class BatteryPoweredRobotImpl extends RobotImpl {
     /**
      * Move the robot based upon the commands passed in, valid commands are "F","R", or "L".
      *
@@ -36,16 +38,6 @@ public class BatteryPoweredRobotImpl implements RobotImplOLD {
     @Override
     public String getName() {
         return null;
-    }
-
-    @Override
-    public int getRank() {
-        return 0;
-    }
-
-    @Override
-    public void setRank(int rank) {
-
     }
 
     /**

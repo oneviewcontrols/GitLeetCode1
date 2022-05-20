@@ -4,18 +4,17 @@ import java.time.Duration;
 import java.time.Instant;
 
 public class RacingRobotImpl extends RobotImpl {
-    private String name = "";
-    private int[] coordinates = {0,0};
+
     private int rank = 0;
 
     public RacingRobotImpl() {
         super();
-        this.name = "";
+        setName("");
     }
 
     public RacingRobotImpl(String name) {
         super();
-        this.name = name;
+        setName(name);
     }
 
     @Override
@@ -100,23 +99,17 @@ public class RacingRobotImpl extends RobotImpl {
     }
 
     @Override
-    public int getRank() {
-        return this.rank;
-    }
-
-    @Override
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    @Override
     public void reportStatus() {
-        if (getName().length() > 0) {
-            System.out.print(getName() + " Rank is " + getRank());
+        String prefix = getAttributeValue(RobotAttributes.RANK);
+        if (prefix.length() != 0) {
+            prefix = getName().length() > 0 ? getName() + " Rank is " + rank : "Rank is " + rank + ".";
         } else {
-            System.out.print("Rank is " + getRank());
+            prefix = getName();
         }
-        System.out.println(". Current Coordinates are [" + getCoordinates()[0] + "," + getCoordinates()[1] + "].");
-
+        if (prefix.length() > 0) {
+            System.out.println(prefix + ". Current Coordinates are [" + getCoordinates()[0] + "," + getCoordinates()[1] + "].");
+        } else {
+            System.out.println("Current Coordinates are [" + getCoordinates()[0] + "," + getCoordinates()[1] + "].");
+        }
     }
 }

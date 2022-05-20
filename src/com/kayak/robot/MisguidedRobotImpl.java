@@ -1,12 +1,14 @@
 package com.kayak.robot;
 
+
+
 /**
  *  Class Stub to show the ability of the bridge pattern
  *  to extend to n additional robot types.
  * Robots can be created at run time with different abilities and attributes
  * based upon the impl they are initialized with
  */
-public class MisguidedRobotImpl implements RobotImplOLD {
+public class MisguidedRobotImpl extends RobotImpl {
 
     /**
      * Move the robot based upon the commands passed in, valid commands are "F","R", or "L".
@@ -38,16 +40,6 @@ public class MisguidedRobotImpl implements RobotImplOLD {
     @Override
     public String getName() {
         return "";
-    }
-
-    @Override
-    public int getRank() {
-        return 0;
-    }
-
-    @Override
-    public void setRank(int rank) {
-
     }
 
     /**

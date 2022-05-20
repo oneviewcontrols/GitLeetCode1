@@ -1,9 +1,13 @@
-package com.kayak.robot;
+package com.kayak.robotoldtwo;
+
+import com.kayak.robot.Robot;
+import com.kayak.robot.RobotEvent;
+import com.kayak.robot.RobotObserver;
 
 public interface RobotImplOLD {
 
 
-    public void setRobot(Robot robot);
+    public void setRobot(com.kayak.robot.Robot robot);
 
     public Robot getRobot();
 
@@ -36,7 +40,7 @@ public interface RobotImplOLD {
      */
     public void reportStatus();
 
-    public void addObserver(RobotEvent event,RobotObserver observer);
+    public void addObserver(RobotEvent event, RobotObserver observer);
 
     public void removeObserver(RobotEvent event,RobotObserver observer);
 
