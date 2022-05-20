@@ -8,12 +8,14 @@ import com.company.leetcode.problems.LongestSubNoRepeats;
 import com.company.leetcode.problems.NumStepsBinaryString;
 import com.kayak.robot.Robot;
 import com.kayak.robot.RacingRobotImpl;
+import com.kayak.robot.RobotService;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        FloodFill.runTestCases();
+        RobotService service = RobotService.getInstance();
+        service.raceRobots();
 
     }
 

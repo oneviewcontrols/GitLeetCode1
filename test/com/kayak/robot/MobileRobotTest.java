@@ -24,6 +24,13 @@ class MobileRobotTest {
         robot = null;
     }
 
+    @Test
+    void testMoveRaceMove() {
+        String[] cmds = {"F","R","F","L","L","F","R","F"};
+        int[] result = robot.move(cmds,new int[]{0,0},0,1);
+        assertTrue(result[0] == 0);
+        assertTrue(result[1] == 2);
+    }
 
     @Test
     void testMoveOneLeft() {

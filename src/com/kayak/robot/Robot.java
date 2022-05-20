@@ -3,6 +3,9 @@ package com.kayak.robot;
 
 import com.kayak.robotoldtwo.RobotImplOLD;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Robot  {
     protected RobotImpl impl = null;
 
@@ -37,5 +40,21 @@ public class Robot  {
 
     public void reportStatus() {
         impl.reportStatus();
+    }
+
+    public void setAttributeValue(RobotAttributes attribute,String value) {
+        impl.setAttributeValue(attribute,value);
+    }
+
+    public String getAttributeValue(RobotAttributes attribute) {
+        return impl.getAttributeValue(attribute);
+    }
+
+    public void addObserver(RobotEvents event, RobotObserver observer) {
+        impl.addObserver(event,observer);
+    }
+
+    public void removeObserver(RobotEvents event, RobotObserver observer) {
+        impl.removeObserver(event,observer);
     }
 }

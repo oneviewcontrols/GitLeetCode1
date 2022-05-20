@@ -23,7 +23,7 @@ public class RacingRobotImpl extends RobotImpl {
         int y = startingCoordinates[1];
         int xDir = 0;
         int yDir = 1;
-        notifyObservers(RobotEvent.START);
+        notifyObservers(RobotEvents.START);
         for (String movement: commands) {
             Instant start = Instant.now();
             try {
@@ -48,9 +48,9 @@ public class RacingRobotImpl extends RobotImpl {
             long timeElapsed = Duration.between(start, finish).toMillis();
             reportLatestMovement(movement,movementDistance,timeElapsed);
         }
-        notifyObservers(RobotEvent.STOP);
         coordinates[0] = x;
         coordinates[1] = y;
+        notifyObservers(RobotEvents.STOP);
         return coordinates;
 
     }
@@ -102,7 +102,7 @@ public class RacingRobotImpl extends RobotImpl {
     public void reportStatus() {
         String prefix = getAttributeValue(RobotAttributes.RANK);
         if (prefix.length() != 0) {
-            prefix = getName().length() > 0 ? getName() + " Rank is " + rank : "Rank is " + rank + ".";
+            prefix = getName().length() > 0 ? getName() + " Rank is " + prefix : "Rank is " + prefix + ".";
         } else {
             prefix = getName();
         }
