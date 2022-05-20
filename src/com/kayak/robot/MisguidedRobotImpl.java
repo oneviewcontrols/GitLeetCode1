@@ -24,16 +24,6 @@ public class MisguidedRobotImpl extends RobotImpl {
         return new int[0];
     }
 
-    @Override
-    public void setName(String name) {
-
-    }
-
-    @Override
-    public String getName() {
-        return "";
-    }
-
     /**
      * Report the current status as defined by the implementing classes
      */

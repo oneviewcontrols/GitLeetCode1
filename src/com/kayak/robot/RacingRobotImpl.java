@@ -5,11 +5,11 @@ import java.time.Instant;
 
 public class RacingRobotImpl extends RobotImpl {
 
-    private int rank = 0;
-
     public RacingRobotImpl() {
         super();
-        setName("");
+        this.name = "";
+        this.movementDelay = 0;
+
     }
 
     public RacingRobotImpl(String name,int movementDelay) {
@@ -30,7 +30,7 @@ public class RacingRobotImpl extends RobotImpl {
             try {
                 Thread.sleep(movementDelay);
             } catch (InterruptedException e) {
-                System.out.println("RobotDefaultImpl.move caught InterruptedException");
+                System.out.println("RacingRobotImpl.move caught InterruptedException");
             }
             if (movement.equals("R")) {
                 int newX = xDir != 0 ? 0 : yDir;
@@ -90,20 +90,10 @@ public class RacingRobotImpl extends RobotImpl {
     }
 
     @Override
-    public void setName(String name) {
-       this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
     public void reportStatus() {
         String prefix = getAttributeValue(RobotAttributes.RANK);
         if (prefix.length() != 0) {
-            prefix = getName().length() > 0 ? getName() + " Rank is " + prefix : "Rank is " + prefix + ".";
+            prefix = getName().length() > 0 ? getName() + "s Rank is " + prefix : "Rank is " + prefix + ".";
         } else {
             prefix = getName();
         }

@@ -1,11 +1,6 @@
 package com.kayak.robot;
 
 
-import com.kayak.robotoldtwo.RobotImplOLD;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class Robot  {
     protected RobotImpl impl = null;
 

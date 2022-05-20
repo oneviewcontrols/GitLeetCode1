@@ -8,7 +8,7 @@ public class RacerThread extends Thread {
     private CountDownLatch latch = null;
     private Robot robot = null;
     private String commands = "";
-    private RacerThreadListener listener = null;
+    private RacerThreadListener listener = null; // Would be a collection to allow n listeners
 
 
 
