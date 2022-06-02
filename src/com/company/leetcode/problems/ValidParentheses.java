@@ -1,6 +1,7 @@
 package com.company.leetcode.problems;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -28,12 +29,12 @@ public class ValidParentheses {
             } else {
                 stack.push(c);
             }
+
         }
         return stack.empty();
     }
-    
-    
-    
+
+
     public boolean isValidold(String s) {
 
         // Initialize a stack to be used in the algorithm.
