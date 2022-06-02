@@ -4,16 +4,17 @@ public class ShortestDistanceBetweenWords {
 
     public int shortestDistance(String[] wordsDict, String word1, String word2) {
         int ans = wordsDict.length;
-
-        for (int i=0, left=-1, right=-1; i<wordsDict.length; i++) {
+        int one = -1;
+        int two = -1;
+        for (int i=0; i<wordsDict.length; i++) {
             if (wordsDict[i].equals(word1)) {
-                left = i;
+                one = i;
             }
             if (wordsDict[i].equals(word2)) {
-                right = i;
+                two = i;
             }
-            if (left > -1 && right > -1) {
-                ans = Math.min(Math.abs(right-left), ans);
+            if (one > -1 && two > -1) {
+                ans = Math.min(Math.abs(two-one), ans);
             }
         }
         return ans;
