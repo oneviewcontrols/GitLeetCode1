@@ -1,5 +1,9 @@
 package com.company.leetcode.problems;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 public class ShortestDistanceBetweenWords {
 
     public int shortestDistance(String[] wordsDict, String word1, String word2) {
