@@ -1,10 +1,12 @@
 package com.company.leetcode.problems;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PermutationInString {
+
 
     public boolean checkInclusion(String s1, String s2) {
         Map<String,Integer> map = new HashMap<>();
