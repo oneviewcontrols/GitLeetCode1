@@ -1,6 +1,7 @@
 package com.company.leetcode.problems;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Stack;
 
 public class ReverseInsideParenthesis {
@@ -26,6 +27,8 @@ public class ReverseInsideParenthesis {
             for(int i=0;i<list.size();i++){
                 ans+=list.get(i);
             }
+
+
             return ans;
         }
 

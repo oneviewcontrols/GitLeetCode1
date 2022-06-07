@@ -14,7 +14,14 @@ public class TopK {
             }
         }
 
-        Queue<Integer> queue = new PriorityQueue((n1, n2) -> map.get(n1) - map.get(n2));
+        Comparator<Integer> c = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return map.get(o1).compareTo(map.get(o2));
+            }
+        };
+        //Queue<Integer> queue = new PriorityQueue((n1, n2) -> map.get(n1) - map.get(n2));
+        Queue<Integer> queue = new PriorityQueue(c);
 
 
         Set<Integer> keys = map.keySet();
