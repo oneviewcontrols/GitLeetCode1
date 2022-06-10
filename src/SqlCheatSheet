@@ -1,0 +1,84 @@
+#DateDiff(date1,date2) Return the number of days between two date values:
+#The FIRST_VALUE() is a window function that allows you to select the first row of a window frame, partition, or result set.
+/*
+#comparing consecutive rows
+select distinct a.seat_id
+from cinema a join cinema b
+on abs(a.seat_id - b.seat_id) = 1
+and a.free = true and b.free = true
+order by a.seat_id
+;
+
+#Write an SQL query to report all the classes that have at least five students.
+select class from Courses Group By class HAVING COUNT(DISTINCT student) >=5;
+
+# Write an SQL query to find all dates' Id with higher temperatures compared to its previous dates (yesterday).
+select w.id from Weather w join Weather b on
+DATEDIFF(w.recordDate,b.recordDate) = 1 AND
+w.temperature > b.temperature;
+
+#Write an SQL query to find the employees who earn more than their managers.
+select e.name as "Employee" from Employee e join Employee x on
+e.managerId = x.id AND e.salary > x.salary;
+
+#Write an SQL query to report all the duplicate emails.
+select email AS Email from Person GROUP BY email HAVING COUNT(email) > 1;
+
+#Write an SQL query to report all customers who never order anything.
+select name as 'Customers' from Customers c where c.id not in (select customerId from orders);
+
+#Write an SQL query to report the first login date for each player.
+select DISTINCt(player_id),min(event_date) as first_login from Activity GROUP BY player_id;
+
+#Write an SQL query to report the device that is first logged in for each player.
+SELECT DISTINCT
+    player_id,
+    FIRST_VALUE(device_id) OVER(PARTITION BY player_id ORDER BY event_date ASC) AS device_id
+FROM Activity;
+
+#Write an SQL query to report the name and bonus amount of each employee with a bonus less than 1000.
+select e.name,b.bonus from Employee e left join Bonus b on
+        e.empId = b.empId where b.bonus < 1000 or b.bonus IS NULL;
+
+#Write an SQL query to find the customer_number for the customer who has placed the largest number of orders.
+select customer_number from orders GROUP BY customer_number
+ORDER BY COUNT(*) desc LIMIT 1
+
+# Two tables with dups
+SELECT
+    ROUND(
+            IFNULL(
+                        (SELECT COUNT(*) FROM (SELECT DISTINCT requester_id, accepter_id FROM RequestAccepted) AS A)
+                        /
+                        (SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM FriendRequest) AS B),
+                        0)
+        , 2) AS accept_rate;
+
+
+select s.name from SalesPerson s where sales_id not in (
+
+    select s.sales_id from SalesPerson s join Orders o on
+            s.sales_id = o.sales_id join Company c on
+            o.com_id = c.com_id where c.name = "RED"
+)
+
+*/
+
+CREATE PROCEDURE isTriangle(IN a INT,IN b INT,IN c INT,OUT @result INT)
+BEGIN
+
+    IF (a + b) > c THEN
+        IF (a + c) > b THEN
+            IF (b + c) > a THEN
+                SET @result = 1;
+            ELSE
+                SET @result = 0;
+            END IF;
+        ELSE
+            SET @result = 0;
+        END IF;
+    ELSE
+        SET @result = 0;
+    END IF;
+
+END;
