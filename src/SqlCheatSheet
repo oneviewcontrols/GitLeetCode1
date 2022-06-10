@@ -21,6 +21,9 @@ select w.id from Weather w join Weather b on
 DATEDIFF(w.recordDate,b.recordDate) = 1 AND
 w.temperature > b.temperature;
 
+#Biggest number not repeated in table of nums
+select IFNULL((select num from MyNumbers GROUP BY num HAVING COUNT(num) = 1 order by num desc LIMIT 1),null) as num;
+
 #Write an SQL query to find the employees who earn more than their managers.
 select e.name as "Employee" from Employee e join Employee x on
 e.managerId = x.id AND e.salary > x.salary;
@@ -48,8 +51,16 @@ select e.name,b.bonus from Employee e left join Bonus b on
 select customer_number from orders GROUP BY customer_number
 ORDER BY COUNT(*) desc LIMIT 1
 
+#Odd Rows, Non Boring, Desc Order
+select id,movie,description,rating from Cinema where MOD(id,2) = 1 AND description != "boring" order by rating desc;
 
-
+# SWAP COLUMN VALUES
+UPDATE salary
+SET
+    sex = CASE sex
+              WHEN 'm' THEN 'f'
+              ELSE 'm'
+        END;
 
 select x,y,z, IF(((x + y) > z),1,0) as side1,
        IF(((x + z) > y),1,0) as side2,
