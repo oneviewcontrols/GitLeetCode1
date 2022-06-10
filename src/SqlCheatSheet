@@ -9,6 +9,10 @@ and a.free = true and b.free = true
 order by a.seat_id
 ;
 
+#Write an SQL query to report the shortest distance between any two points from the Point table.
+select MIN(ABS(p1.x - p2.x)) as shortest from Point p1 join Point p2 on
+        p1.x != p2.x
+
 #Write an SQL query to report all the classes that have at least five students.
 select class from Courses Group By class HAVING COUNT(DISTINCT student) >=5;
 
