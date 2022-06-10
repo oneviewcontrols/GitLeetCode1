@@ -56,6 +56,10 @@ select id,movie,description,rating from Cinema where MOD(id,2) = 1 AND descripti
 
 select actor_id,director_id from ActorDirector GROUP BY actor_id,director_id HAVING COUNT(*) >= 3
 
+# Total Products Sold quantity field in sales table
+select s.product_id, SUM(s.quantity) as total_quantity from Sales s join product p on
+        s.product_id = p.product_id GROUP BY s.product_id
+
 # SWAP COLUMN VALUES
 UPDATE salary
 SET
