@@ -1,6 +1,6 @@
 #DateDiff(date1,date2) Return the number of days between two date values:
 #The FIRST_VALUE() is a window function that allows you to select the first row of a window frame, partition, or result set.
-/*
+
 #comparing consecutive rows
 select distinct a.seat_id
 from cinema a join cinema b
@@ -44,6 +44,22 @@ select e.name,b.bonus from Employee e left join Bonus b on
 select customer_number from orders GROUP BY customer_number
 ORDER BY COUNT(*) desc LIMIT 1
 
+
+
+
+select x,y,z, IF(((x + y) > z),1,0) as side1,
+       IF(((x + z) > y),1,0) as side2,
+       IF(((z + y) > z),1,0) as side3 from Triangle
+where side1 = 1 AND side2 = 1 AND side3 = 1;
+
+
+SELECT x,y, z,
+       CASE
+           WHEN x + y > z AND x + z > y AND y + z > x THEN 'Yes'
+           ELSE 'No'
+           END AS 'triangle' FROM triangle;
+
+
 # Two tables with dups
 SELECT
     ROUND(
@@ -62,7 +78,7 @@ select s.name from SalesPerson s where sales_id not in (
             o.com_id = c.com_id where c.name = "RED"
 )
 
-*/
+
 
 CREATE PROCEDURE isTriangle(IN a INT,IN b INT,IN c INT,OUT @result INT)
 BEGIN
