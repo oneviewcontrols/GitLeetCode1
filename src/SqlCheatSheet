@@ -54,6 +54,8 @@ ORDER BY COUNT(*) desc LIMIT 1
 #Odd Rows, Non Boring, Desc Order
 select id,movie,description,rating from Cinema where MOD(id,2) = 1 AND description != "boring" order by rating desc;
 
+select actor_id,director_id from ActorDirector GROUP BY actor_id,director_id HAVING COUNT(*) >= 3
+
 # SWAP COLUMN VALUES
 UPDATE salary
 SET
