@@ -60,6 +60,12 @@ select actor_id,director_id from ActorDirector GROUP BY actor_id,director_id HAV
 select s.product_id, SUM(s.quantity) as total_quantity from Sales s join product p on
         s.product_id = p.product_id GROUP BY s.product_id
 
+#Get Average with 2 decimal places
+select p.project_id,
+       CAST(AVG(e.experience_years) as decimal(10,2)) as 'average_years'
+from Project p join Employee e on
+        p.employee_id = e.employee_id group by project_id;
+
 # SWAP COLUMN VALUES
 UPDATE salary
 SET
