@@ -1,0 +1,127 @@
+#DateDiff(date1,date2) Return the number of days between two date values:
+#The FIRST_VALUE() is a window function that allows you to select the first row of a window frame, partition, or result set.
+
+#comparing consecutive rows
+select distinct a.seat_id
+from cinema a join cinema b
+on abs(a.seat_id - b.seat_id) = 1
+and a.free = true and b.free = true
+order by a.seat_id
+;
+
+#Write an SQL query to report the shortest distance between any two points from the Point table.
+select MIN(ABS(p1.x - p2.x)) as shortest from Point p1 join Point p2 on
+        p1.x != p2.x
+
+#Write an SQL query to report all the classes that have at least five students.
+select class from Courses Group By class HAVING COUNT(DISTINCT student) >=5;
+
+# Write an SQL query to find all dates' Id with higher temperatures compared to its previous dates (yesterday).
+select w.id from Weather w join Weather b on
+DATEDIFF(w.recordDate,b.recordDate) = 1 AND
+w.temperature > b.temperature;
+
+#Biggest number not repeated in table of nums
+select IFNULL((select num from MyNumbers GROUP BY num HAVING COUNT(num) = 1 order by num desc LIMIT 1),null) as num;
+
+#Write an SQL query to find the employees who earn more than their managers.
+select e.name as "Employee" from Employee e join Employee x on
+e.managerId = x.id AND e.salary > x.salary;
+
+#Write an SQL query to report all the duplicate emails.
+select email AS Email from Person GROUP BY email HAVING COUNT(email) > 1;
+
+#Write an SQL query to report all customers who never order anything.
+select name as 'Customers' from Customers c where c.id not in (select customerId from orders);
+
+#Write an SQL query to report the first login date for each player.
+select DISTINCt(player_id),min(event_date) as first_login from Activity GROUP BY player_id;
+
+#Write an SQL query to report the device that is first logged in for each player.
+SELECT DISTINCT
+    player_id,
+    FIRST_VALUE(device_id) OVER(PARTITION BY player_id ORDER BY event_date ASC) AS device_id
+FROM Activity;
+
+#Write an SQL query to report the name and bonus amount of each employee with a bonus less than 1000.
+select e.name,b.bonus from Employee e left join Bonus b on
+        e.empId = b.empId where b.bonus < 1000 or b.bonus IS NULL;
+
+#Write an SQL query to find the customer_number for the customer who has placed the largest number of orders.
+select customer_number from orders GROUP BY customer_number
+ORDER BY COUNT(*) desc LIMIT 1
+
+#Odd Rows, Non Boring, Desc Order
+select id,movie,description,rating from Cinema where MOD(id,2) = 1 AND description != "boring" order by rating desc;
+
+select actor_id,director_id from ActorDirector GROUP BY actor_id,director_id HAVING COUNT(*) >= 3
+
+# Total Products Sold quantity field in sales table
+select s.product_id, SUM(s.quantity) as total_quantity from Sales s join product p on
+        s.product_id = p.product_id GROUP BY s.product_id
+
+#Get Average with 2 decimal places
+select p.project_id,
+       CAST(AVG(e.experience_years) as decimal(10,2)) as 'average_years'
+from Project p join Employee e on
+        p.employee_id = e.employee_id group by project_id;
+
+# SWAP COLUMN VALUES
+UPDATE salary
+SET
+    sex = CASE sex
+              WHEN 'm' THEN 'f'
+              ELSE 'm'
+        END;
+
+select x,y,z, IF(((x + y) > z),1,0) as side1,
+       IF(((x + z) > y),1,0) as side2,
+       IF(((z + y) > z),1,0) as side3 from Triangle
+where side1 = 1 AND side2 = 1 AND side3 = 1;
+
+
+SELECT x,y, z,
+       CASE
+           WHEN x + y > z AND x + z > y AND y + z > x THEN 'Yes'
+           ELSE 'No'
+           END AS 'triangle' FROM triangle;
+
+
+# Two tables with dups
+SELECT
+    ROUND(
+            IFNULL(
+                        (SELECT COUNT(*) FROM (SELECT DISTINCT requester_id, accepter_id FROM RequestAccepted) AS A)
+                        /
+                        (SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM FriendRequest) AS B),
+                        0)
+        , 2) AS accept_rate;
+
+
+select s.name from SalesPerson s where sales_id not in (
+
+    select s.sales_id from SalesPerson s join Orders o on
+            s.sales_id = o.sales_id join Company c on
+            o.com_id = c.com_id where c.name = "RED"
+)
+
+
+
+CREATE PROCEDURE isTriangle(IN a INT,IN b INT,IN c INT,OUT @result INT)
+BEGIN
+
+    IF (a + b) > c THEN
+        IF (a + c) > b THEN
+            IF (b + c) > a THEN
+                SET @result = 1;
+            ELSE
+                SET @result = 0;
+            END IF;
+        ELSE
+            SET @result = 0;
+        END IF;
+    ELSE
+        SET @result = 0;
+    END IF;
+
+END;
