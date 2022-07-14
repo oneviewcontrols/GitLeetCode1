@@ -1,0 +1,21 @@
+
+
+    Different Types Of Software Testing
+    Functional Testing
+        #1) Unit Testing
+        #2) Integration Testing
+        #3) System Testing
+        #4) Acceptance Testing
+    Non-Functional Testing
+        #1) Security Testing
+        #2) Performance Testing
+            - Volume Testing
+            - Endurance Testing
+        #3) Usability Testing
+        #4) Compatibility testing
+        #5) Scalability Testing
+
+
+Database normalization is the process of structuring a relational
+database in accordance with a series of so-called normal forms
+in order to reduce data redundancy and improve data integrity.
