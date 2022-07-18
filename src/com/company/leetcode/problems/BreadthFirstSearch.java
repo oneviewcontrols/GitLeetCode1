@@ -10,7 +10,7 @@ public class BreadthFirstSearch {
     public void breadthFirst(TreeNode root,int target) {
         if (root == null) return;
         if (root.val == target) return;
-        Queue<TreeNode> queue = new LinkedList<>();
+            Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (queue.isEmpty() == false) {
             TreeNode node = queue.poll();
