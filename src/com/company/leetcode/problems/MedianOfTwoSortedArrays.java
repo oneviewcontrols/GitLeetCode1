@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class MedianOfTwoSortedArrays {
 
-
     public double findMedianSortedArraysOld(int[] nums1, int[] nums2) {
+
         int[] mergedArray = new int[nums1.length + nums2.length];
         if (mergedArray.length == 0) return 0;
         System.arraycopy(nums1, 0, mergedArray, 0, nums1.length);
