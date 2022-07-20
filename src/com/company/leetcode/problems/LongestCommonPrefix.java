@@ -34,6 +34,8 @@ public class LongestCommonPrefix {
                 if (prefix.length() == 0) return "";
             }
         }
+        String s = new String();
+        s.substring(5).equals()
         return prefix;
     }
 }
