@@ -14,4 +14,6 @@ public class StandardCard extends Card {
     public Suit getSuit() {
         return this.suit;
     }
+
+
 }
